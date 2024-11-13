@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Background and Content Picture</title>
+    <title>Background and Content Picture with Click Me</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,61 +12,105 @@
         <div class="content">
             <h1>Welcome to My Website</h1>
             <p>I Love You Sir!</p>
-            <img src="anime.gif" alt="Content Image" class="content-image">
+            <img src="anime.gif" alt="Content Image" class="content-image" id="contentImage">
+            <!-- Click Me Button -->
+            <button onclick="changeImage()" class="click-me-button">Click Me for Next Picture</button>
         </div>
     </div>
-<style type="text/css">
-/* Reset some basic styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body, html {
-    height: 100%;
-    font-family: cursive;, sans-serif;
-}
+    <style type="text/css">
+        /* Reset some basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Background styles */
-.background {
-    background-image: url('giphy2.gif');  /* Replace with your own background image URL */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;  /* Full viewport height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        body, html {
+            height: 100%;
+            font-family: cursive, sans-serif;
+        }
 
-/* Main content styles */
-.content {
-    background-color: transparent;  /* Semi-transparent white background */
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    width: 80%;
-    max-width: 600px;
-}
+        /* Background styles */
+        .background {
+            background-image: url('giphy2.gif');  /* Initial background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;  /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-h1 {
-    font-size: 2.5em;
-    color: black;
-}
+        /* Main content styles */
+        .content {
+            background-color: transparent;  /* Semi-transparent white background */
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
 
-p {
-    font-size: 1.2em;
-    color: black;
-    margin-bottom: 20px;
-}
+        h1 {
+            font-size: 2.5em;
+            color: black;
+        }
 
-.content-image {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    border-radius: 8px;
-}
-</style>
+        p {
+            font-size: 1.2em;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .content-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Button styles */
+        .click-me-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .click-me-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = [
+            "giphy2.gif", // Initial background image
+            "giphy.gif", // Next background image
+            "45.webp" // Another background image (replace with your actual URLs)
+        ];
+
+        // Function to change the background and content image on button click
+        function changeImage() {
+            currentImageIndex++;
+            if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;  // Loop back to the first image if we reach the end
+            }
+
+            // Change background image
+            document.querySelector('.background').style.backgroundImage = `url(${images[currentImageIndex]})`;
+
+            // Change content image
+            const contentImage = document.getElementById('contentImage');
+            contentImage.src = images[currentImageIndex];
+        }
+    </script>
 </body>
 </html>
